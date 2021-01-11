@@ -14,6 +14,14 @@ module ActiveFormModel
       permitted_attrs = permit_attrs(attrs)
       super(permitted_attrs)
     end
+    
+    def error
+      errors&.full_messages&.first
+    end
+
+    def error_slug
+      error.parameterize.underscore
+    end
   end
 
   module ClassMethods
