@@ -29,6 +29,16 @@ Or install it yourself as:
 1. Add permitted params inside the class
 1. Use it as a normal model (without strong_params)
 
+## Generator
+
+Use the supplied generator to generate forms:
+
+    $ rails g active_form_model:form sign_up --model=user
+
+or with namespace model
+
+    $ rails g active_form_model:form admin_post --model=blog/post
+
 ### Example
 
 ```ruby
@@ -41,7 +51,7 @@ class UserSignUpForm < User
 
   # add validation if necessary
   # they will be merged with base class' validation
-  validate :password, presence: true
+  validates :password, presence: true
 
   # optional data normalization
   def email=(email)
@@ -58,7 +68,7 @@ In some cases it is necessary to use ActiveRecord object directly without form. 
 
 ```ruby
 user = User.find(params[:id])
-form = user.become(UserSignUpForm)
+form = user.becomes(UserSignUpForm)
 ```
 
 ## Development
